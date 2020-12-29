@@ -39,9 +39,7 @@ docker build -t longjianghu/redis:5.0.7 ./app/redis/
 
 docker build -t longjianghu/mongo:4.4.0 ./app/mongo/
 
-docker build -t longjianghu/swoft:4.5.2 ./app/swoft/
-
-docker build -t longjianghu/swoft-tracker:4.5.2 ./app/swoft-tracker/
+docker build -t longjianghu/hyperf:2.0 ./app/hyperf/
 
 ### 容器运行方法
 
@@ -71,6 +69,6 @@ docker run --name phpmyadmin -p 8000:80 -e PMA_HOST=172.17.0.1 -d phpmyadmin/php
 
 Swoft:
 
-docker run --rm -it -v /data/var/www/swoft:/data longjianghu/swoft:4.5.2 composer install -d /data
+docker run --rm -it -v /data/var/www/hyperf:/data longjianghu/hyperf:2.0 composer install -d /data
 
-docker run --name swoft -p 8080:18306 -v /data/var/www/swoft:/data -d longjianghu/swoft:4.5.2 php /data/bin/swoft http:start
+docker run --name hyperf -p 8080:9501 -v /data/var/www/hyperf:/data -d longjianghu/hyperf:4.5.2

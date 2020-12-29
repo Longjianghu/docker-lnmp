@@ -7,14 +7,14 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
 
 # 环境配置
 ENV TIMEZONE=Asia/Shanghai \
-    REDIS_VERSION=5.3.2 \
-    MONGODB_VERSION=1.9.0 \
+    AMQP_VERSION=1.10.2 \
     IMAGICK_VERSION=3.4.3 \
+    MONGODB_VERSION=1.9.0 \
     MSGPACK_VERSION=2.1.2 \
     NSQ_VERSION=3.5.0 \
+    REDIS_VERSION=5.3.2 \
     SWOOLE_VERSION=4.5.2 \
-    TIDEWAYS_VERSION=5.0.4 \
-    AMQP_VERSION=1.10.2
+    TIDEWAYS_VERSION=5.0.4
 
 # 安装扩展
 COPY ./src/* /tmp/
@@ -38,12 +38,12 @@ RUN set -xe \
         && phpize \
         && ./configure && make -j$(nproc) && make install \
     ) \
-    && pecl install /tmp/redis-${REDIS_VERSION}.tgz \
+    && pecl install /tmp/amqp-${AMQP_VERSION}.tgz \
+    && pecl install /tmp/imagick-${IMAGICK_VERSION}.tgz \
     && pecl install /tmp/mongodb-${MONGODB_VERSION}.tgz \
     && pecl install /tmp/msgpack-${MSGPACK_VERSION}.tgz \
-    && pecl install /tmp/imagick-${IMAGICK_VERSION}.tgz \
-    && pecl install /tmp/amqp-${AMQP_VERSION}.tgz \
     && pecl install /tmp/nsq-${NSQ_VERSION}.tgz \
+    && pecl install /tmp/redis-${REDIS_VERSION}.tgz \
     && docker-php-ext-enable tideways_xhprof swoole redis mongodb imagick msgpack nsq amqp \
     && ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone \
     && apk del --purge *-dev \
