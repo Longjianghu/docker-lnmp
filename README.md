@@ -71,4 +71,4 @@ Hyperf:
 
 docker run --rm -it -v /data/var/www/hyperf:/data longjianghu/hyperf:2.0 composer install -d /data
 
-docker run --name hyperf -p 8080:9501 -v /data/var/www/hyperf:/data -d longjianghu/hyperf:4.5.2
+docker run --name hyperf -p 8080:9501 -v /data/var/www/hyperf:/data -d longjianghu/hyperf:2.0
