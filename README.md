@@ -67,7 +67,7 @@ PHPMyadmin：
 
 docker run --name phpmyadmin -p 8000:80 -e PMA_HOST=172.17.0.1 -d phpmyadmin/phpmyadmin
 
-Swoft:
+Hyperf:
 
 docker run --rm -it -v /data/var/www/hyperf:/data longjianghu/hyperf:2.0 composer install -d /data
 
