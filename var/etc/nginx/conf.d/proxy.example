@@ -1,3 +1,7 @@
+upstream backend {
+    server 172.17.0.1:9001;
+}
+
 server
 {
     listen       80;
@@ -7,7 +11,7 @@ server
     #error_log  /var/log/nginx/www.example.com.error.log warn;
 
     location / {
-        proxy_pass http://172.17.0.1:9001;
+        proxy_pass http://backend;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Real-PORT $remote_port;
@@ -17,12 +21,14 @@ server
 
     location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
     {
+        proxy_pass http://backend;
         expires    30d;
         access_log off;
     }
 
     location ~ .*\.(js|css)?$
     {
+        proxy_pass http://backend;
         expires    12h;
         access_log off;
     }
