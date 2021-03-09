@@ -1,4 +1,4 @@
-FROM hyperf/hyperf:7.4-alpine-v3.11-swoole
+FROM hyperf/hyperf:7.4-alpine-v3.12-swoole-v4.6.3
 
 MAINTAINER Longjianghu <215241062@qq.com>
 
